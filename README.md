@@ -2,11 +2,9 @@
 This sample project shows the setup for the foreground service. The service in this sample project is a foreground service to request location.
 The permission for <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" /> is depend of the foreground service type.
 
-[![รูปตัวอย่าง](https://github.com/BlackMocca/kotlin-sample-gps-tracking/blob/main/simple.jpg?raw=true)]
-
-## Similar project with (Dart Language)
-
-https://github.com/NicosNicolaou16/SampleForegroundServiceFlutter <br />
+![รูปตัวอย่าง](https://github.com/BlackMocca/kotlin-sample-gps-tracking/blob/main/simple.jpg?raw=true)
+## Seeing this file app > src > main > java > $package > service > LocationService.kt
+[https://github.com/BlackMocca/kotlin-sample-gps-tracking/blob/main/app/src/main/java/com/nicos/sampleforegroundservice/service/LocationService.kt](https://github.com/BlackMocca/kotlin-sample-gps-tracking/blob/main/app/src/main/java/com/nicos/sampleforegroundservice/service/LocationService.kt)
 
 # Manifest Setup
 ```xml
