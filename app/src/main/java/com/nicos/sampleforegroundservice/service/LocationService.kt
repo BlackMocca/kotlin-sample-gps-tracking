@@ -19,14 +19,15 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ServiceCompat
 import com.nicos.sampleforegroundservice.R
+import android.util.Log
 
 class LocationService : Service(), LocationListener {
 
     companion object {
         private const val locationChannelId = "locationChannelId"
         private const val channelName = "locationName"
-        private const val minTimeLocationUpdateInMillisecond = 10000L
-        private const val minDistanceLocationUpdateInMeter = 1000F
+        private const val minTimeLocationUpdateInMillisecond = 1000L // send loc every 1 second
+        private const val minDistanceLocationUpdateInMeter = 1F // distance meter
     }
 
     override fun onCreate() {
@@ -119,11 +120,22 @@ class LocationService : Service(), LocationListener {
      * Call back to get the update coordination
      * */
     override fun onLocationChanged(location: Location) {
+        Log.d("LocationUpdate", "Latitude: ${location.latitude}, Longitude: ${location.longitude}")
         Toast.makeText(
             this,
-            "${location.latitude} ${this.getString(R.string.and)} ${location.longitude}",
+            "Get Location ${location.latitude} and ${location.longitude}",
             Toast.LENGTH_LONG
         ).show()
+
+        val updatedNotification = Notification.Builder(this, locationChannelId).apply {
+            setContentTitle("Location Updated")
+            setContentText("${location.latitude}, ${location.longitude}")
+            setSmallIcon(R.drawable.ic_notifcation_icon)
+            setOngoing(true)
+        }.build()
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1, updatedNotification)
     }
 
     private fun checkIfLocationPermissionIsGrande() = ActivityCompat.checkSelfPermission(
